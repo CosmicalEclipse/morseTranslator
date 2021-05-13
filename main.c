@@ -1,9 +1,4 @@
 #include <stdio.h>
-#include <string.h>
-
-char toUpperCase(char x);
-void initStruct();
-void printMorse(char c);
 
 struct Morse {
     char A[3];
@@ -32,21 +27,34 @@ struct Morse {
     char X[5];
     char Y[5];
     char Z[5];
-
-} morse;
-
-int main(int argc, char* argv[]) {
-    initStruct();
-
-    for(int o = 1; o < argc; o++){
-        for(int i = 0; argv[o][i] != '\0'; i++){
-            printMorse(toUpperCase(argv[o][i]));
-        }
-        printf(" ");
-    }
-    printf("\n");
-    return 0;
-}
+} morse = {
+    .A = ".-",
+    .B = "-...",
+    .C = "-.-.",
+    .D = "-..",
+    .E = ".",
+    .F = "..-.",
+    .G = "--.",
+    .H = "....",
+    .I = "..",
+    .J = ".---",
+    .K = "-.-",
+    .L = ".-..",
+    .M = "--",
+    .N = "-.",
+    .O = "---",
+    .P = ".--.",
+    .Q = "--.-",
+    .R = ".-.",
+    .S = "...",
+    .T = "-",
+    .U = "..-",
+    .V = "...-",
+    .W = ".--",
+    .X = "-..-",
+    .Y = "-.--",
+    .Z = "--.."
+};
 
 void printMorse(char c){
     switch (c) {
@@ -128,36 +136,10 @@ void printMorse(char c){
         case 'Z':
             printf("%s ", morse.Z);
             break;
+        default:
+            printf("[undefined character] ");
+            break;
     }
-}
-
-void initStruct() {
-    strcpy(morse.A, ".-");
-    strcpy(morse.B, "-...");
-    strcpy(morse.C, "-.-.");
-    strcpy(morse.D, "-..");
-    strcpy(morse.E, ".");
-    strcpy(morse.F, "..-.");
-    strcpy(morse.G, "--.");
-    strcpy(morse.H, "....");
-    strcpy(morse.I, "..");
-    strcpy(morse.J, ".---");
-    strcpy(morse.K, "-.-");
-    strcpy(morse.L, ".-..");
-    strcpy(morse.M, "--");
-    strcpy(morse.N, "-.");
-    strcpy(morse.O, "---");
-    strcpy(morse.P, ".--.");
-    strcpy(morse.Q, "--.-");
-    strcpy(morse.R, ".-.");
-    strcpy(morse.S, "...");
-    strcpy(morse.T, "-");
-    strcpy(morse.U, "..-");
-    strcpy(morse.V, "...-");
-    strcpy(morse.W, ".--");
-    strcpy(morse.X, "-..-");
-    strcpy(morse.Y, "-.--");
-    strcpy(morse.Z, "--..");
 }
 
 char toUpperCase(char x){
@@ -165,4 +147,15 @@ char toUpperCase(char x){
         return x-32;
     }
     else return x;
+}
+
+int main(int argc, char* argv[]) {
+    for(int o = 1; o < argc; o++){
+        for(int i = 0; argv[o][i] != '\0'; i++){
+            printMorse(toUpperCase(argv[o][i]));
+        }
+        printf(" ");
+    }
+    printf("\n");
+    return 0;
 }
